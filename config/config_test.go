@@ -11,11 +11,10 @@ var yamlFile = "../application.yml"
 
 func TestConfigAppName(t *testing.T){
 	t.Run("os_environment", func(t *testing.T) {
-		err := os.Setenv("APP_NAME", "protoman")
+		failTestIfError(t, os.Setenv("APP_NAME", "protoman"))
 
 		appName := config.AppName()
 
-		assert.NoError(t, err)
 		assert.Equal(t, "protoman", appName)
 	})
 	t.Run("yaml_file", func(t *testing.T) {
@@ -32,16 +31,16 @@ func TestConfigAppName(t *testing.T){
 func setupEnvYamlFile(t *testing.T, yamlString string) {
 	os.Clearenv()
 	f, err := os.Create(yamlFile)
-	failTest(t, err)
+	failTestIfError(t, err)
 	_, err = f.WriteString(yamlString)
-	failTest(t, err)
+	failTestIfError(t, err)
 }
 
 func removeEnvYamlFile() {
 	_ = os.Remove(yamlFile)
 }
 
-func failTest(t *testing.T, err error) {
+func failTestIfError(t *testing.T, err error) {
 	if err != nil {
 		t.Failed()
 	}
