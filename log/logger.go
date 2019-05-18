@@ -1,13 +1,11 @@
 package log
 
 import (
-	"fmt"
 	"github.com/sirupsen/logrus"
 	"os"
 )
 
 func init() {
-	fmt.Println("init logger called")
 	logrus.SetFormatter(&logrus.JSONFormatter{})
 }
 

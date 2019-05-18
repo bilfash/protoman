@@ -13,9 +13,16 @@ type (
 	}
 )
 
-func New() App {
-	return &app{
+func New() (App, error) {
+	app := &app{
 	}
+	err := app.initiate()
+	return app, err
+}
+
+func (a *app) initiate() error {
+	fmt.Println("implement me")
+	return nil
 }
 
 func (a *app) Start() error {
