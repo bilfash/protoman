@@ -1,8 +1,8 @@
 package log
 
 import (
+	"github.com/bilfash/protoman/config"
 	"github.com/sirupsen/logrus"
-	"os"
 )
 
 func init() {
@@ -10,5 +10,5 @@ func init() {
 }
 
 func Get() *logrus.Entry {
-	return logrus.WithField("application", os.Getenv("APP_NAME"))
+	return logrus.WithField("application", config.AppName())
 }
